@@ -1,3 +1,8 @@
+<?php
+
+session_start();
+if (!is_null($_SESSION['login_user'])) {
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -103,7 +108,7 @@
                     </div>
                     <div class="sb-sidenav-footer">
                         <div class="small">Logged in as:</div>
-                        Start Bootstrap
+							<?php echo $_SESSION['login_user']  ?>
                     </div>
                 </nav>
             </div>
@@ -662,18 +667,8 @@
                         </div>
                     </div>
                 </main>
-                <footer class="py-4 bg-light mt-auto">
-                    <div class="container-fluid px-4">
-                        <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; Your Website 2021</div>
-                            <div>
-                                <a href="#">Privacy Policy</a>
-                                &middot;
-                                <a href="#">Terms &amp; Conditions</a>
-                            </div>
-                        </div>
-                    </div>
-                </footer>
+
+			<?php include("./footer.php") ?>
             </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
@@ -685,3 +680,8 @@
         <script src="js/datatables-simple-demo.js"></script>
     </body>
 </html>
+<?php
+}else{
+         header("location:../index.php");
+}
+?>
